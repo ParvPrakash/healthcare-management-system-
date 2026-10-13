@@ -1,0 +1,40 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
+<div id="commandPalette" class="palette-backdrop" role="dialog" aria-modal="true" aria-label="Command search">
+    <div class="palette-box">
+        <div class="palette-input-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="paletteInput" class="palette-input" placeholder="Type a command or jump to page... (Esc to close)" autocomplete="off">
+        </div>
+        <ul class="palette-list" id="paletteList">
+            <c:if test="${sessionScope.USER.role == 'ADMIN'}">
+                <li><a href="${pageContext.request.contextPath}/admin/dashboard" class="palette-item">Dashboard Overview</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/users" class="palette-item">User Management & Doctors</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/appointments" class="palette-item">Appointment Schedules</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/analytics" class="palette-item">Performance Analytics</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/settings" class="palette-item">System & Clinic Settings</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/audit" class="palette-item">Audit Trail & Security Logs</a></li>
+            </c:if>
+            <c:if test="${sessionScope.USER.role == 'DOCTOR'}">
+                <li><a href="${pageContext.request.contextPath}/doctor/dashboard" class="palette-item">Doctor Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/doctor/schedule" class="palette-item">Schedule & Availability</a></li>
+                <li><a href="${pageContext.request.contextPath}/doctor/appointments" class="palette-item">Appointments Overview</a></li>
+                <li><a href="${pageContext.request.contextPath}/doctor/records" class="palette-item">Patient EMR Records</a></li>
+                <li><a href="${pageContext.request.contextPath}/doctor/feedback" class="palette-item">Patient Reviews & Feedback</a></li>
+            </c:if>
+            <c:if test="${sessionScope.USER.role == 'PATIENT'}">
+                <li><a href="${pageContext.request.contextPath}/patient/dashboard" class="palette-item">Patient Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient/doctors" class="palette-item">Book New Appointment</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient/appointments" class="palette-item">My Appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/patient/records" class="palette-item">My Medical History</a></li>
+                <li><a href="${pageContext.request.contextPath}/profile" class="palette-item">Profile & Password</a></li>
+            </c:if>
+            <li><a href="${pageContext.request.contextPath}/logout" class="palette-item" style="color:var(--danger);">Sign Out</a></li>
+        </ul>
+    </div>
+</div>
