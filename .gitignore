@@ -1,0 +1,28 @@
+# Maven build output
+target/
+*.war
+*.jar
+
+# Embedded Tomcat temp working directories
+tomcat.*/
+tomcat-embed/
+
+# Logs
+*.log
+logs/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Node / Scratch dependencies
+node_modules/
+package-lock.json
